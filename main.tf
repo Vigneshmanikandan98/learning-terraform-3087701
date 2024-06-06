@@ -11,7 +11,7 @@ data "aws_ami" "app_ami" {
     values = ["hvm"]
   }
 
-  owners = [var.ami_filter.owner] # Bitnami
+  owners = [var.ami_filter.owner]
 }
 
 
@@ -24,12 +24,12 @@ module "blog_vpc" {
   azs             = ["us-west-2a","us-west-2b","us-west-2c"]
   public_subnets  = ["${var.environment.network_prefix}.101.0/24", "${var.environment.network_prefix}.102.0/24", "${var.environment.network_prefix}.103.0/24"]
 
-
   tags = {
     Terraform = "true"
     Environment = var.environment.name
   }
 }
+
 
 module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
